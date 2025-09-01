@@ -1,0 +1,6 @@
+extern function voIndex()
+{
+    Dialogs.display(Dialogs.center("Hola Mundo",1),5);
+    UTILS.getKey(60000);
+}
+
