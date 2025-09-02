@@ -1,0 +1,13 @@
+extern function voIndex()
+{
+    Dialogs.display(Dialogs.center("Hola Mundo",1),5);
+    Dialogs.insertBotton(0,10,7,84,280,"PÚLSAME !",143);
+    Dialogs.insertIcon("logo.bmp", 84, 280,150);
+
+
+    while(true){
+        var key = UTILS.getKey(60000);
+        Dialogs.display(Dialogs.center(String.toString(key),1),10);
+    }
+}
+

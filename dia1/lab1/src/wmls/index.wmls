@@ -1,6 +1,32 @@
 extern function voIndex()
 {
-    Dialogs.display(Dialogs.center("Hola Mundo",1),5);
-    UTILS.getKey(60000);
+
+    extern function solicitarCodigo() {
+        var tipo = "NUMERIC";
+        var titulo = "Ingrese su código";
+        var valorPorDefecto = "";
+        var fila = 3;
+        var minimo = 4;
+        var maximo = 6;
+        var mostrarError = 1;
+        var logoError = "ERROR.BMP";
+
+        var codigo = Dialogs.extendedPrompt(
+            tipo,
+            titulo,
+            valorPorDefecto,
+            fila,
+            minimo,
+            maximo,
+            mostrarError,
+            logoError
+        );
+
+        if (String.length(codigo) >= minimo) {
+        Dialogs.display("Código ingresado: " + codigo, 5);
+        } else {
+        Dialogs.errorMessage("Error", "Código inválido", 2, 1, 1);
+        }
+    }
 }
 

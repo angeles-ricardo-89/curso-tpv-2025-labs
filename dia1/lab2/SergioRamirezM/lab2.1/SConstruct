@@ -1,0 +1,9 @@
+import os
+from site_tools import get_basic_configuration
+
+project_name = "lab1"
+base_dir = os.getcwd()
+
+project = get_basic_configuration(base_dir, project_name)
+
+project.build()
