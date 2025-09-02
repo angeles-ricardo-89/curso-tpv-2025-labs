@@ -1,0 +1,10 @@
+app_title=lab1
+app_priority=0
+app_folder=lab1
+app_allow_remove=1
+app_vss_slot_offset=1
+app_copy_app_file=1
+
+app_install_folder=lab1
+app_resources_folder=lab1_res
+app_config_folder=lab1_conf
