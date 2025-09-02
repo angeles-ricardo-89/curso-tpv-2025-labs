@@ -11,5 +11,6 @@ Instalar scons
 
 Instalar la herramienta de construcción tpvutils.
 
-pip install https://tpvsolutions.com.mx/ftpmbrowserengage/tools/tpvutils/tpvutils-0.2.3.tar.gz
+pip install https://tpvsolutions.com.mx/ftpmbrowserengage/tools/tpvutils/tpvutils-0.2.4.tar.gz
+
 
