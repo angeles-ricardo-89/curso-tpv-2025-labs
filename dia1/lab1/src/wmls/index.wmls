@@ -1,5 +1,6 @@
 extern function voIndex()
 {
+<<<<<<< HEAD
 
     extern function solicitarCodigo() {
         var tipo = "NUMERIC";
@@ -28,5 +29,15 @@ extern function voIndex()
         Dialogs.errorMessage("Error", "Código inválido", 2, 1, 1);
         }
     }
+=======
+    Dialogs.display(Dialogs.center("Hola Mundo",1),5);
+    Dialogs.insertBotton(0,10,7,84,280,"ESTE ES UN BOTON",143);
+    
+    while(true){
+    	var key = UTILS.getKey(60000);
+    	Dialogs.display(Dialogs.center(String.toString(key),1),10);
+    }
+    
+>>>>>>> 14424d5f852187315edc533d06bd905e4ebf500f
 }
 

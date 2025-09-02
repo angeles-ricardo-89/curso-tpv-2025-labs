@@ -1,0 +1,44 @@
+{
+	"build_systems":
+	[
+		{
+			"file_regex": "^(.*):([0-9]+):([0-9]+): (error:.*)",
+            "name": "TPV App",
+            "working_dir": "${project_path}",
+            "variants":[ 
+                
+                    
+                    {"name":"debug for engage", "shell_cmd": "scons BUILD_TYPE=debug PACKAGING=engage"},
+                    
+                    {"name":"release for engage", "shell_cmd": "scons BUILD_TYPE=release PACKAGING=engage"},
+                    
+                
+                    
+                    {"name":"debug for verix", "shell_cmd": "scons BUILD_TYPE=debug PACKAGING=verix"},
+                    
+                    {"name":"release for verix", "shell_cmd": "scons BUILD_TYPE=release PACKAGING=verix"},
+                    
+                
+                    
+                    {"name":"debug for ingenico", "shell_cmd": "scons BUILD_TYPE=debug PACKAGING=ingenico"},
+                    
+                    {"name":"release for ingenico", "shell_cmd": "scons BUILD_TYPE=release PACKAGING=ingenico"},
+                    
+                
+                    
+                    {"name":"debug for android", "shell_cmd": "scons BUILD_TYPE=debug PACKAGING=android"},
+                    
+                    {"name":"release for android", "shell_cmd": "scons BUILD_TYPE=release PACKAGING=android"},
+                    
+                
+            ]
+        }
+	],
+	"folders":
+	[
+		{
+			"path": ".",
+			"folder_exclude_patterns":["output", "bin", "dist", "tools", "build"]
+		}
+	]
+}
