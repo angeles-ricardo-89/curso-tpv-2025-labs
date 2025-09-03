@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        android:textSize="30sp"
+        android:textSize="5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,6 +54,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="suma"
+            android:layout_marginTop="8dp" />
+        <Button
+            android:id="@+id/multiply_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="multiplicar"
+            android:layout_marginTop="8dp" />
+        <Button
+            android:id="@+id/divid_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dividir"
             android:layout_marginTop="8dp" />
     </LinearLayout>
 
@@ -115,6 +127,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sum: 0"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Mult display -->
+        <TextView
+            android:id="@+id/mult_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mult: 1"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Div display -->
+        <TextView
+            android:id="@+id/div_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Div: 1"
             android:textSize="18sp"
             android:layout_marginTop="8dp" />
     </LinearLayout>
