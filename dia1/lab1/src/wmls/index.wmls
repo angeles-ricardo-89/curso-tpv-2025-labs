@@ -1,93 +1,11 @@
 extern function voIndex()
 {
-    //requestCode();
-    //requestHttpTest();
-    Dialogs.insertBotton(0,5,6,0,0,"Imprimir",1);
+    Dialogs.display(Dialogs.center("Hola Mundo",1),5);
+    Dialogs.insertBotton(0,10,7,84,280,"ESTE ES UN BOTON",143);
 
-    var key = UTILS.getKey(30);
-
-    if (key == 1) {
-        printSampleTicket();
-    }
-}
-extern function requestCode() {
-  var type = "A";
-  var title = "Ingrese su código";
-  var defaultValue = "000000";
-  var row = 3;
-  var min = 4;
-  var max = 6;
-  var showError = 1;
-  var logoError = "";
-
-  var stInput = Dialogs.extendedPrompt(
-    type,
-    title,
-    defaultValue,
-    row,
-    min,
-    max,
-    showError,
-    logoError
-  );
-
-  Dialogs.display("Código ingresado: " + stInput, 5);
-}
-
-extern function requestHttpTest(){
-    var host = "ipv4.icanhazip.com";
-    var urlTest  = "http://ipv4.icanhazip.com";
-    var respuesta = "";
-    var port = "80";
-
-    Dialogs.display("Obteniendo IP...", 2);
-
-    var connResult = ISO.openConnectionIP(host, port);
-    if (connResult <= 0) {
-        Dialogs.display("Error conexión IP", 3);
+    while(true){
+    	var key = UTILS.getKey(60000);
+    	Dialogs.display(Dialogs.center(String.toString(key),1),10);
     }
 
-    if (HttpClient.httpPetition() == 1) {
-        ISO.openConnectionIP(host, port);
-        respuesta = HttpClient.executeMethod("GET", urlTest);
-
-        if (String.length(respuesta) > 0) {
-            Dialogs.display("Tu IP pública:", 3);
-            Dialogs.display(String.trim(respuesta), 4);
-        } else {
-            Dialogs.display("Sin respuesta", 3);
-        }
-
-    } else {
-        Dialogs.display("Error iniciando HTTP", 3);
-    }
-
-    ISO.closeConnection();
-}
-extern function printSampleTicket() {
-  Printer.open();
-
-  Printer.setWidthMode(1);
-  Printer.setHeightMode(0);
-
-  Printer.printLn("    TPV SOLUTIONS S.A.   ");
-  Printer.printLn("   Calle 123    ");
-  Printer.printLn("----------------------");
-
-  var actualDate = System.datetime();
-  Printer.printLn("Fecha: " + actualDate);
-  Printer.printLn("----------------------");
-
-  Printer.printLn("1 x Sopa           $ 50.00");
-  Printer.printLn("2 x Tamales        $ 30.00");
-  Printer.printLn("----------------------");
-
-  Printer.printLn("Subtotal:         $ 80.00");
-  Printer.printLn("IVA (16%):        $ 12.80");
-  Printer.printLn("TOTAL:            $ 92.80");
-  Printer.printLn("----------------------");
-
-  Printer.printLn("Gracias por su compra!");
-
-  Printer.close();
 }
