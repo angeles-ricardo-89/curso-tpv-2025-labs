@@ -4,7 +4,7 @@
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_priv_tpvsolutions_ndklab_MainActivity_stringFromJNI(
-        JNIEnv* env,
+        JNIEnv *env,
         jobject /* this */) {
     __android_log_print(ANDROID_LOG_DEBUG, "NATIVE_LIB", "Hello from C++");
     std::string hello = "Hello from C++";
@@ -69,10 +69,32 @@ Java_com_priv_tpvsolutions_ndklab_MainActivity_divide(JNIEnv *env, jobject thiz,
     __android_log_print(ANDROID_LOG_DEBUG, "NATIVE_LIB", "Div %d / %d", a, b);
     return a / b;
 }
-
 extern "C"
 JNIEXPORT jint JNICALL
 Java_com_priv_tpvsolutions_ndklab_MainActivity_divideIntegerArrayList(JNIEnv *env, jobject thiz,
                                                                       jintArray numbers) {
-    // TODO: implement divideIntegerArrayList()
+    __android_log_print(ANDROID_LOG_DEBUG, "NATIVE_LIB", "Divide Integer Array List");
+    jint *elements = env->GetIntArrayElements(numbers, nullptr);
+    jsize length = env->GetArrayLength(numbers);
+
+    if (length == 0) {
+        __android_log_print(ANDROID_LOG_WARN, "NATIVE_LIB", "Array vacío, retornando 0");
+        return 0;
+    }
+
+    jint result = elements[0];
+
+    for (jsize i = 1; i < length; i++) {
+        if (elements[i] == 0) {
+            __android_log_print(ANDROID_LOG_ERROR, "NATIVE_LIB", "Division by zero at index %d", i);
+            env->ReleaseIntArrayElements(numbers, elements, JNI_ABORT);
+            return 0;
+        }
+        result /= elements[i];
+    }
+
+    __android_log_print(ANDROID_LOG_DEBUG, "NATIVE_LIB", "Divide result: %d", result);
+
+    env->ReleaseIntArrayElements(numbers, elements, JNI_ABORT);
+    return result;
 }

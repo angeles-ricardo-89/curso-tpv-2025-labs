@@ -1,17 +1,16 @@
 package com.priv.tpvsolutions.ndklab;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.priv.tpvsolutions.ndklab.databinding.ActivityMainBinding;
 
-import android.view.View;
-import android.content.Context;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
         EditText integerInput = binding.integerInput;
         LinearLayout numberListContainer = binding.numberListContainer;
         Button addNumberButton = binding.addNumberButton;
+        Button multiplyNumberButton = binding.multiplyNumberButton;
+        Button divideNumberButton = binding.divideNumberButton;
         Button clearListButton = binding.clearListButton;
         TextView sumText = binding.sumText;
+        TextView multText = binding.multText;
+        TextView divideText = binding.divideText;
 
         addNumberButton.setOnClickListener(v -> {
             String input = integerInput.getText().toString().trim();
@@ -83,10 +86,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        multiplyNumberButton.setOnClickListener(v -> {
+            String input = integerInput.getText().toString().trim();
+            if (!input.isEmpty()) {
+                try {
+                    int value = Integer.parseInt(input);
+                    integerList.add(value);
+                    integerInput.setText("");
+                    updateNumberListUI(numberListContainer, this);
+                    updateMultiplyText(multText);
+                } catch (NumberFormatException ignored) {}
+            }
+        });
+
+        divideNumberButton.setOnClickListener(v -> {
+            String input = integerInput.getText().toString().trim();
+            if (!input.isEmpty()) {
+                try {
+                    int value = Integer.parseInt(input);
+                    integerList.add(value);
+                    integerInput.setText("");
+                    updateNumberListUI(numberListContainer, this);
+                    updateDivideText(divideText);
+                } catch (NumberFormatException ignored) {}
+            }
+        });
+
         clearListButton.setOnClickListener(v -> {
             integerList.clear();
             updateNumberListUI(numberListContainer, this);
             updateSumText(sumText);
+            updateMultiplyText(multText);
+            updateDivideText(divideText);
         });
     }
 
@@ -103,8 +134,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateSumText(TextView sumText) {
         int sum = 0;
-        sum = multiplyIntegerArrayList(integerList.stream().mapToInt(i -> i).toArray());
+        sum = sumIntegerArrayList(integerList.stream().mapToInt(i -> i).toArray());
         sumText.setText("Sum: " + sum);
+    }
+
+    private void updateMultiplyText(TextView multText) {
+        int prod = 0;
+        prod = multiplyIntegerArrayList(integerList.stream().mapToInt(i -> i).toArray());
+        multText.setText("Prod: " + prod);
+    }
+
+    private void updateDivideText(TextView divideText) {
+        int result = 0;
+        result = divideIntegerArrayList(integerList.stream().mapToInt(i -> i).toArray());
+        divideText.setText("Div: " + result);
     }
 
     /**
@@ -112,14 +155,17 @@ public class MainActivity extends AppCompatActivity {
      * which is packaged with this application.
      */
     public native String stringFromJNI();
+
     public native int suma(int a, int b);
-    public native  int sumIntegerArrayList(int[] numbers);
+
+    public native int sumIntegerArrayList(int[] numbers);
 
     public native int multiply(int a, int b);
 
     public native int divide(int a, int b);
 
     public native int multiplyIntegerArrayList(int[] numbers);
+
     public native int divideIntegerArrayList(int[] numbers);
 
 }
