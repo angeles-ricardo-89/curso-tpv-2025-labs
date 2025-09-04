@@ -1,12 +1,114 @@
 extern function voIndex()
 {
-    Dialogs.display(Dialogs.center("Hola Mundo",1),5);
-    Dialogs.insertBotton(0,10,7,84,280,"ESTE ES UN BOTON",143);
-    
-    while(true){
-    	var key = UTILS.getKey(60000);
-    	Dialogs.display(Dialogs.center(String.toString(key),1),10);
-    }
-    
+
+    Dialogs.insertBotton(0, 1, 10, 500, 100, "Login", 1);    
+    Dialogs.insertBotton(0, 1, 15, 500, 160, "Print", 2);    
+    Dialogs.insertBotton(0, 1, 20, 500, 220, "Http", 3);     
+
+    var key = UTILS.getKey(30);
+    if (key == 1) {
+        requestCode();
+    } else if (key == 2) {
+        printSampleTicket();
+    } else if (key == 3) {
+        requestHttpTest();
+    } 
 }
 
+extern function requestCode() {
+   var usuario = Dialogs.extendedPrompt(
+        "A",                      
+        "Iniciar Sesión; Ingresa tu usuario", 
+        "",                       
+        8,                        
+        1,                        
+        10,                       
+        1,                        
+        ""            
+    );
+
+    if (usuario != "daniel") {
+        Dialogs.display(Dialogs.center("Usuario o clave incorrecto", 1), 10);
+        UTILS.getKey(3000);
+    } else {
+        UTILS.getKey(3000);
+
+        var clave = Dialogs.extendedPrompt(
+            "N",                                
+            "Iniciar Sesión;Ingresa tu clave",
+            "",                                 
+            4,                                  
+            4,                                  
+            4,                                  
+            1,                                  
+            ""                                 
+        );
+
+        if (clave == "1234") {
+            Dialogs.display(Dialogs.center("Inicio de sesión correcto", 1), 10);
+        } else {
+            Dialogs.display(Dialogs.center("Usuario o clave incorrecto", 1), 10);
+        }
+        UTILS.getKey(3000);
+    }
+}
+
+extern function printSampleTicket() {
+  Printer.open();
+
+  Printer.setWidthMode(1);   // 0: normal, 1: modo estrecho
+  Printer.setHeightMode(0);  // 0: normal, 1: modo doble altura
+
+  Printer.printLn("    TPV SOLUTIONS S.A.   ");
+  Printer.printLn("   Calle 123    ");
+  Printer.printLn("----------------------");
+
+  var actualDate = System.datetime();
+  Printer.printLn("Fecha: " + actualDate);
+  Printer.printLn("----------------------");
+
+  Printer.printLn("1 x Sopa           $ 50.00");
+  Printer.printLn("2 x Tamales        $ 30.00");
+  Printer.printLn("----------------------");
+
+  Printer.printLn("Subtotal:         $ 80.00");
+  Printer.printLn("IVA (16%):        $ 12.80");
+  Printer.printLn("TOTAL:            $ 92.80");
+  Printer.printLn("----------------------");
+
+  Printer.printLn("Gracias por su compra!");
+
+  Printer.close();
+}
+
+extern function requestHttpTest(){
+    var host = "ipv4.icanhazip.com";
+    var urlTest  = "http://ipv4.icanhazip.com";
+    var respuesta = "";
+    var port = "80";
+
+
+    Dialogs.display("Obteniendo IP...", 2);
+
+    var connResult = ISO.openConnectionIP(host, port);
+    if (connResult <= 0) {
+        Dialogs.display("Error conexión IP", 3);
+    }
+
+    if (HttpClient.httpPetition() == 1) {
+        ISO.openConnectionIP(host, port);
+        respuesta = HttpClient.executeMethod("GET", urlTest);
+
+        if (String.length(respuesta) > 0) {
+            Dialogs.display("Tu IP pública:", 3);
+            Dialogs.display(String.trim(respuesta), 4);
+        } else {
+            Dialogs.display("Sin respuesta", 3);
+        }
+
+    } else {
+        Dialogs.display("Error iniciando HTTP", 3);
+    }
+
+    ISO.closeConnection();
+}
