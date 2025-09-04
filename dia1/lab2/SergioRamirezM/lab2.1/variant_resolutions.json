@@ -1,0 +1,8 @@
+{
+  "variant": "assets",
+  "map": {
+    "engage": ["240x320", "320x480"],
+    "verix": ["240x320"],
+    "ingenico": ["240x320"]
+  }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+	<card id="idPaso" newcontext="false" >
+		<setvar name="APPLICATION" value="LAB1"/>
+		<setvar name="VERSIONNAME" value="AW01"/>
+		<setvar name="VERSIONNUMBER" value="01A"/> 	
+		<onevent type="onenterforward">
+			<go href="f:Index.wmlsc#voIndex()">
+			</go>
+		</onevent>
+	</card>
+</wml>
+
